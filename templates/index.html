@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Price Predictor</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <!-- CSS Stylesheets -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+
+
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container col-lg-12 col-sm-12">
+    <h2 class='container-heading' style="text-align: center;"><span class="heading_font">Car Price Predictor</span></h2>
+    <div class='description'>
+      <p>A Machine Learning Web App, Built with Flask, Deployed using Heroku.</p>
+    </div>
+
+
+
+    <div class="middle_sec col-lg-12 col-sm-12">
+      <div class="row">
+        <div class="car_image col-lg-6 col-sm-6">
+          <img src="../static/audi.png" alt="audi img" width="50%" height="auto">
+
+        </div>
+        <div class="col-lg-6 col-sm-6">
+
+          <h4 class="desc">How much is your car really worth?</h4>
+          <h4>Get an estimation on how much you should pay for a used car.</h4>
+          <h4>Predict the price of any Second Hand Car :)</h4>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="main_container">
+    <form action="\predict" method="post">
+      <h6>Year</h6>
+      <input class="form-input" type="text" name="year" maxlength="4" placeholder="In which year car was purchased?" required="required"><br>
+
+      <h6>Kilometers Drived</h6>
+      <input type="number" class="form-input" id="second" name="kilometers" placeholder="How Many Kilometers Drived?" required="required">
+
+      <h6>Fuel Type</h6>
+      <select class="custom-select form-input" name="fuel_type" required>
+        <option value="Petrol">Petrol</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Electric">Electric</option>
+        <option value="LPG">LPG</option>
+        <option value="CNG">CNG</option>
+      </select>
+
+      <h6>Seller Type</h6>
+      <select class="custom-select form-input" name="seller_type" required>
+        <option value="Individual">Individual</option>
+        <option value="Trustmark Dealer">Trustmark Dealer</option>
+        <option value="Dealer">Dealer</option>
+      </select>
+
+      <h6>Transmission</h6>
+      <select class="custom-select form-input" name="transmission" required>
+        <option value="Manual">Manual</option>
+        <option value="Automatic">Automatic</option>
+      </select>
+
+      <h6>How much owners previously had the car?</h6>
+      <select class="custom-select form-input" name="owner" required>
+        <option value="Second Owner">Second Owner</option>
+        <option value="Third Owner">Third Owner</option>
+        <option value="Fourth & Above Owner">Fourth & Above Owner</option>
+        <option value="Test Drive Car">Test Drive Car</option>
+        <option value="First Owner">First Owner</option>
+      </select>
+      <br /><br />
+      <input type="submit" class="btn" value="Predict Car Value" style="border: 2px solid #ff9933;
+      border-radius: 1000px;">
+    </form>
+    <br><br><h6>{{ prediction_text }}<h6>
+  </div>
+
+  <!-- Footer -->
+  <div class='footer' style="text-align: center">
+    <div class="contact">
+      <a target="_blank" href="https://github.com/Mahammadanis/Car-Price-Prediction-Deployment.git"><i class="fab fa-github fa-lg contact-icon"></i></a>
+      <a target="_blank" href="https://www.linkedin.com/in/mahammadanis-vahora-7728ab195/"><i class="fab fa-linkedin fa-lg contact-icon"></i></a>
+    </div>
+    <p class='footer-description'>Made with by Mahammadanis Vahora.</p>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* wesite title */
+    .container {
+
+      padding-top: 40px;
+      padding-bottom: 40px;
+      position: relative;
+      background: linear-gradient(45deg, #ff9933, #ff3399, #6666ff);
+      background-size: 500% 500%;
+      animation: change-gradient 10s ease-in-out infinite;
+    }
+
+
+
+    @keyframes change-gradient {
+      0% {
+        background-position: 0 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0 50%;
+      }
+    }
+
+    .heading_font {
+      text-align: center;
+      color: #ffffff;
+      font-family: 'Pacifico', cursive;
+      font-size: 35px;
+      font-weight: normal;
+    }
+
+    .description p {
+      text-align: center;
+      font-family: 'Montserrat';
+      color: #ffffff;
+      font-style: italic;
+      font-size: 14px;
+      margin: -5px 0 0;
+    }
+
+    /* middle_sec */
+    .middle_sec {
+      margin-top: 3%;
+
+    }
+
+    h4 {
+      font-family: 'Montserrat';
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      padding-top: 2%;
+
+    }
+
+    h6 {
+      padding-top: 1%;
+      font-family: 'Montserrat';
+
+    }
+
+
+
+
+    .car_image {
+      animation: car 1s ease-in-out 1;
+    }
+
+    @keyframes car {
+
+      0% {
+        left: 1400px;
+        top: 0px;
+      }
+
+      100% {
+        left: 0px;
+        top: 0px;
+      }
+
+
+    }
+
+    /* main_container */
+    .main_container {
+      text-align: center;
+      margin: 30px 0;
+      flex: 1 0 auto;
+    }
+
+    .form-input {
+      text-align: center;
+      width: 400px;
+      height: 35px;
+      margin-bottom: 5px;
+    }
+
+    /* Predict Button */
+
+
+    .btn:hover {
+      color: #0099ff;
+      border: 2px solid #4d089a;
+    }
+
+    /* Contact */
+    .contact-icon {
+      color: #ffffff;
+      padding: 7px;
+    }
+
+    .contact-icon:hover {
+      color: #8c8c8c;
+    }
+
+    /* Footer */
+    .footer {
+      flex-shrink: 0;
+      position: relative;
+      padding: 20px;
+      background: #F4483A;
+
+    }
+
+    .footer-description {
+      color: #ffffff;
+      margin: 0;
+      font-size: 12px;
+    }
+  </style>
+</body>
+
+</html>
