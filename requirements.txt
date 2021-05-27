@@ -18,7 +18,7 @@ flask-oidc==1.4.0
 Flask-Script==2.0.6
 Flask-Session==0.3.1
 Flask-Sessionstore==0.4.5
-gunicorn==20.0.4
+gunicorn
 ipykernel==5.5.5
 ipython==7.23.1
 ipython-genutils==0.2.0
