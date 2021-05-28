@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
+
 import pickle
-import numpy
+import numpy as np
 app = Flask(__name__)
 model = pickle.load(open('randomForest_model.pkl', 'rb'))
 @app.route('/',methods=['GET'])
